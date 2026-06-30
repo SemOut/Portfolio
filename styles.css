@@ -80,11 +80,57 @@ a {
   padding: 1rem 0;
 }
 
-.brand span {
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
   color: var(--text-strong);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.brand-link:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 10px 24px rgba(185, 59, 81, 0.24);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand-text strong {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.brand-text small {
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.18rem;
 }
 
 .nav-links {
@@ -400,20 +446,62 @@ h2 {
   border: 1px solid var(--panel-border);
 }
 
-/* email link should not use the sitewide .btn styles */
-.email-link {
-  color: var(--accent);
-  font-weight: 700;
-  text-decoration: none;
-  background: transparent;
-  padding: 0.25rem 0.5rem;
-  border-radius: 8px;
-  display: inline-block;
+.contact-form {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.25rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
 }
 
-.email-link:hover {
-  text-decoration: underline;
-  color: var(--accent-strong);
+.contact-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contact-field span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-strong);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: rgba(185, 59, 81, 0.55);
+  box-shadow: 0 0 0 3px rgba(185, 59, 81, 0.16);
+}
+
+.contact-field textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.form-status {
+  min-height: 1.25rem;
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.form-status.is-success {
+  color: #8fe3a4;
+}
+
+.form-status.is-error {
+  color: #ff9aa2;
 }
 
 /* simple button style for email (fits, but not the .btn look) */
@@ -421,23 +509,33 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 0.9rem;
-  border-radius: 10px;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--panel-border);
+  padding: 0.8rem 1.05rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #b93b51, #8a2033);
+  color: #fff;
+  border: none;
   font-weight: 700;
   cursor: pointer;
   min-width: 10ch;
+  box-shadow: 0 16px 40px rgba(185, 59, 81, 0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .email-btn:hover {
-  background: rgba(255,255,255,0.02);
+  background: linear-gradient(135deg, #d8576d, #b83b52);
+  transform: translateY(-1px);
+  box-shadow: 0 18px 44px rgba(185, 59, 81, 0.28);
+}
+
+.email-btn:disabled {
+  opacity: 0.75;
+  cursor: wait;
   transform: none;
+  box-shadow: 0 16px 40px rgba(185, 59, 81, 0.22);
 }
 
 .email-btn:active {
-  background: rgba(255,255,255,0.03);
+  transform: translateY(0);
 }
 
 .site-footer {

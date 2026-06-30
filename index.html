@@ -11,7 +11,13 @@
   <header class="site-header">
     <div class="container header-content">
       <div class="brand">
-        <span>Portfolio</span>
+        <a class="brand-link" href="#home" aria-label="Sem Out home">
+          <span class="brand-mark">SO</span>
+          <span class="brand-text">
+            <strong>Sem Out</strong>
+            <small>Creative Developer</small>
+          </span>
+        </a>
       </div>
       <nav class="nav-links">
         <a href="#about">About</a>
@@ -175,7 +181,25 @@
           <h2>Let’s build something great together.</h2>
           <p>Share the project idea, and I’ll help shape it into a clean, modern website that works on all devices.</p>
         </div>
-        <button class="email-btn" type="button" data-email="hello@example.com">hello@example.com</button>
+        <form class="contact-form" id="contactForm" data-email="s.out2527@gmail.com" action="https://formsubmit.co/ajax/s.out2527@gmail.com" method="POST" accept-charset="UTF-8">
+          <label class="contact-field">
+            <span>Your name</span>
+            <input type="text" name="name" placeholder="How should I call you?" required />
+          </label>
+          <label class="contact-field">
+            <span>Your email</span>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label class="contact-field">
+            <span>Message</span>
+            <textarea name="message" rows="5" placeholder="Tell me about your idea or project..." required></textarea>
+          </label>
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_subject" id="formSubject" value="New portfolio message" />
+          <button class="email-btn" type="submit" id="submitButton">Send message</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
