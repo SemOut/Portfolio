@@ -448,7 +448,7 @@ h2 {
 
 .contact-form {
   display: grid;
-  gap: 0.9rem;
+  gap: 0.6rem;
   padding: 1.25rem;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.03);
@@ -469,7 +469,7 @@ h2 {
 .contact-field input,
 .contact-field textarea {
   width: 100%;
-  padding: 0.8rem 0.95rem;
+  padding: 0.6rem 0.75rem;
   border-radius: 12px;
   border: 1px solid var(--panel-border);
   background: rgba(255, 255, 255, 0.04);
