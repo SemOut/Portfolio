@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Professional portfolio showcasing projects, skills, and contact information." />
+  <title>Portfolio | Sem Out</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="brand">
+        <span>Portfolio</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-gradient" id="home">
+      <div class="container hero-content">
+        <div>
+          <p class="eyebrow">Professional Portfolio</p>
+          <h1>Designing digital experiences with elegant front-end development.</h1>
+          <p class="hero-copy">I build modern, responsive websites and portfolios that showcase your work with clarity, polish, and strong visual hierarchy.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View work</a>
+            <a class="button secondary" href="#contact">Contact me</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card-panel">
+            <p><strong>Available for freelance work, internships, and remote opportunities.</strong></p>
+            <ul>
+              <li>Web design</li>
+              <li>Responsive development</li>
+              <li>Portfolio strategy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="section-header">
+        <p class="section-label">About me</p>
+        <h2>Creative developer with a strong eye for detail.</h2>
+      </div>
+      <div class="grid two-column">
+        <div>
+          <p>I design intuitive digital experiences and build clean, accessible websites using HTML, CSS, and JavaScript. My work balances visual polish, performance, and usability so clients can confidently share their story online.</p>
+          <p>Whether it’s a personal portfolio, brand landing page, or small business site, I focus on delivering responsive layouts, smooth interactions, and modern typography.</p>
+        </div>
+        <div class="about-list">
+          <div>
+            <strong>Location</strong>
+            <p>Netherlands, Zuid-Holland, Sommelsdijk</p>
+          </div>
+          <div>
+            <strong>Experience</strong>
+            <p>Web development, UI/UX, freelance projects</p>
+          </div>
+          <div>
+            <strong>Available</strong>
+            <p>Remote & onsite</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Featured work</p>
+          <h2>Projects that combine design and development.</h2>
+        </div>
+        <div class="grid project-grid">
+          <article class="project-card">
+            <span class="project-tag">Startup website</span>
+            <h3>Brand launch landing page</h3>
+            <p>Designed a polished homepage with responsive sections, strong calls-to-action, and a modern brand presentation.</p>
+          </article>
+          <article class="project-card">
+            <span class="project-tag">Portfolio redesign</span>
+            <h3>Personal portfolio refresh</h3>
+            <p>Built a clean, fast portfolio to highlight projects, skills, and an easy path to contact.</p>
+          </article>
+          <article class="project-card">
+            <span class="project-tag">E-commerce concept</span>
+            <h3>Product showcase page</h3>
+            <p>Created a product detail layout with visual hierarchy, image support, and feature highlights.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="skills">
+      <div class="section-header">
+        <p class="section-label">Skills</p>
+        <h2>Tools and technologies I rely on.</h2>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-chip">HTML</div>
+        <div class="skill-chip">CSS</div>
+        <div class="skill-chip">JavaScript</div>
+        <div class="skill-chip">Responsive design</div>
+        <div class="skill-chip">Accessibility</div>
+        <div class="skill-chip">User interface design</div>
+      </div>
+    </section>
+
+    <section class="section section-contact section-gradient" id="contact">
+      <div class="container contact-panel">
+        <div>
+          <p class="section-label">Contact</p>
+          <h2>Let’s build something great together.</h2>
+          <p>Share the project idea, and I’ll help shape it into a clean, modern website that works on all devices.</p>
+        </div>
+        <button class="email-btn" type="button" data-email="hello@example.com">hello@example.com</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© <span id="currentYear"></span> Sem Out. All rights reserved usage of anything on this page may be restricted and possibly results in legal action.</p>
+      <nav class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Node dependencies
+node_modules/
+
+
+
+
+
+
+
+
+
+
+
+
+npm-debug.log*
+nyarn-debug.log*
+nyarn-error.log*
+n# Logs.env.local.env
+n# Environment filesThumbs.db.DS_Store
+n# OS files.vscode/
+n# VS Code settingsn# Build outputs
+ndist/
+nbuild/

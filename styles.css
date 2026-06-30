@@ -1,0 +1,518 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  --bg: linear-gradient(180deg, #12060b 0%, #2b0d16 100%);
+  --surface: #2d121c;
+  --surface-soft: #391523;
+  --surface-strong: #17070b;
+  --card: #2a1019;
+  --card-border: rgba(189, 80, 104, 0.22);
+  --text: #f2e5e6;
+  --text-strong: #f9edea;
+  --text-muted: #d4b7ba;
+  --accent: #b93b51;
+  --accent-strong: #8a2033;
+  --muted-border: rgba(137, 61, 72, 0.3);
+  --panel-bg: rgba(255, 210, 221, 0.08);
+  --panel-border: rgba(189, 80, 104, 0.28);
+  --button-secondary-bg: rgba(255, 255, 255, 0.08);
+  --button-secondary-text: #e2e8f0;
+  --button-bg: rgba(255, 255, 255, 0.08);
+  --button-border: rgba(255, 255, 255, 0.18);
+  --button-hover-glow: rgba(185, 59, 81, 0.28);
+  --button-text: #ffffff;
+  --button-hover-bg: rgba(255, 255, 255, 0.16);
+  --header-bg: rgba(25, 8, 13, 0.93);
+  --header-border: rgba(137, 61, 72, 0.18);
+  --toggle-bg: rgba(255, 255, 255, 0.08);
+  --toggle-border: rgba(255, 255, 255, 0.14);
+  --toggle-color: var(--text-strong);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+a {
+  font: inherit;
+}
+
+.container {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--header-bg);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--header-border);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.brand span {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  min-width: 6.5em;
+  height: 2.3em;
+  margin: 0.2rem;
+  background: linear-gradient(135deg, #b93b51, #8a2033);
+  color: white;
+  border-radius: 0.625em;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.btn {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: linear-gradient(135deg, #b93b51, #8a2033);
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* apply the Bordeaux .btn behavior to existing site button classes */
+.button,
+.footer-links a,
+.btn,
+.nav-links a {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: linear-gradient(135deg, #b93b51, #8a2033);
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 16px 40px rgba(185, 59, 81, 0.22);
+}
+
+.nav-links a,
+.footer-links a {
+  width: auto;
+  min-width: 5em;
+  height: 1.9rem;
+  margin: 0.15rem;
+  padding: 0 0.75rem;
+  font-size: 0.88rem;
+}
+
+.button:hover,
+.footer-links a:hover,
+.btn:hover,
+.nav-links a:hover {
+  color: white;
+  background: linear-gradient(135deg, #d8576d, #b83b52);
+}
+
+.button::after,
+.footer-links a::after,
+.btn::after,
+.nav-links a::after {
+  content: "";
+  background: rgba(255, 255, 255, 0.12);
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+.button:hover::after,
+.footer-links a:hover::after,
+.btn:hover::after,
+.nav-links a:hover::after {
+  transform: skewX(-45deg) scale(1, 1);
+}
+
+.button.primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #b93b51, #8a2033);
+  border-color: transparent;
+  box-shadow: 0 16px 40px rgba(185, 59, 81, 0.22);
+}
+
+.button.primary:hover {
+  background: linear-gradient(135deg, #d8576d, #b83b52);
+  color: white;
+}
+
+.button.primary,
+.button.secondary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #b93b51, #8a2033);
+  border-color: transparent;
+  box-shadow: 0 16px 40px rgba(185, 59, 81, 0.22);
+}
+.button.primary:hover,
+.button.secondary:hover {
+  background: linear-gradient(135deg, #d8576d, #b83b52);
+  color: white;
+}
+
+/* theme toggle removed; site uses a single Bordeaux theme */
+
+.hero {
+  padding: 6rem 0 4rem;
+}
+
+.section-gradient {
+  background: linear-gradient(180deg, var(--surface-strong) 0%, var(--surface) 100%);
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.05;
+}
+
+.button.secondary:hover {
+  background: linear-gradient(135deg, #d8576d, #b83b52);
+  color: white;
+}
+
+.hero-card {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-panel {
+  width: 100%;
+  border-radius: 32px;
+  padding: 2rem;
+  background: var(--card);
+  box-shadow: 0 36px 80px -50px rgba(15, 23, 42, 0.35);
+  border: 1px solid var(--panel-border);
+}
+
+.card-panel p {
+  margin: 0 0 1rem;
+  color: var(--text);
+}
+
+.card-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card-panel li {
+  color: var(--text-muted);
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-alt {
+  background: var(--surface);
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+.section-label {
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 1.1;
+  color: var(--text-strong);
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.two-column {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.about-list div {
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: var(--card);
+  border: 1px solid var(--panel-border);
+}
+
+.project-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.project-card {
+  padding: 2rem;
+  border-radius: 30px;
+  background: var(--card);
+  border: 1px solid var(--panel-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 36px 70px -35px rgba(185, 59, 81, 0.25);
+}
+
+.project-tag {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.skill-chip {
+  padding: 1rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(185, 59, 81, 0.12);
+  color: #f3d1d8;
+  font-weight: 600;
+}
+
+
+.section-contact {
+  padding: 5rem 0;
+}
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  border-radius: 32px;
+  background: var(--card);
+  border: 1px solid var(--panel-border);
+}
+
+/* email link should not use the sitewide .btn styles */
+.email-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  background: transparent;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+  color: var(--accent-strong);
+}
+
+/* simple button style for email (fits, but not the .btn look) */
+.email-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  font-weight: 700;
+  cursor: pointer;
+  min-width: 10ch;
+}
+
+.email-btn:hover {
+  background: rgba(255,255,255,0.02);
+  transform: none;
+}
+
+.email-btn:active {
+  background: rgba(255,255,255,0.03);
+}
+
+.site-footer {
+  padding: 2rem 0;
+  background: var(--surface-strong);
+  border-top: 1px solid var(--muted-border);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-content p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+@media (max-width: 840px) {
+  .hero-content,
+  .contact-panel,
+  .two-column,
+  .project-grid,
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  .nav-links {
+    order: 2;
+    justify-content: center;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .button,
+  .footer-links a {
+    width: 100%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .footer-links a {
+    flex: 1;
+  }
+
+}
