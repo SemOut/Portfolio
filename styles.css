@@ -288,7 +288,7 @@ a {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 2rem;
-  align-items: center;
+  align-items: stretch;
 }
 
 .eyebrow {
@@ -312,21 +312,37 @@ h1 {
 
 .hero-card {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 
 .card-panel {
   width: 100%;
+  max-width: 42rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 32px;
-  padding: 2rem;
+  padding: 3rem;
   background: var(--card);
-  box-shadow: 0 36px 80px -50px rgba(15, 23, 42, 0.35);
+  box-shadow: 0 40px 100px -55px rgba(15, 23, 42, 0.38);
   border: 1px solid var(--panel-border);
 }
 
 .card-panel p {
-  margin: 0 0 1rem;
+  margin: 0 0 0.85rem;
   color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  max-width: 30rem;
+}
+
+.card-note {
+  margin: 1.2rem 0 0.65rem;
+  color: var(--text-strong);
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .card-panel ul {
@@ -334,11 +350,12 @@ h1 {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .card-panel li {
   color: var(--text-muted);
+  font-size: 0.95rem;
 }
 
 .section {
@@ -421,16 +438,44 @@ h2 {
 
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.skill-group {
+  display: grid;
   gap: 1rem;
+  padding: 1.75rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.skill-group h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+  border-bottom: 1px solid rgba(189, 80, 104, 0.18);
+  padding-bottom: 0.75rem;
+}
+
+.skill-group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
 }
 
 .skill-chip {
-  padding: 1rem 1.25rem;
-  border-radius: 999px;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
   background: rgba(185, 59, 81, 0.12);
   color: #f3d1d8;
   font-weight: 600;
+  text-align: center;
 }
 
 
