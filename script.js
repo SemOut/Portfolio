@@ -9,6 +9,76 @@ document.addEventListener('DOMContentLoaded', () => {
     yearElement.textContent = new Date().getFullYear();
   }
 
+  const revealSelectors = [
+    '.site-header',
+    '.hero-content > div',
+    '.hero-card',
+    '.section-header',
+    '.card-panel',
+    '#about .grid > div',
+    '.about-list > div',
+    '.project-card',
+    '.skill-group',
+    '.section-contact > .container',
+    '.contact-form',
+    '.footer-panel'
+  ];
+
+  const revealElements = document.querySelectorAll(revealSelectors.join(','));
+
+  if (revealElements.length) {
+    revealElements.forEach((element) => element.classList.add('reveal'));
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    revealElements.forEach((element) => revealObserver.observe(element));
+  }
+
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  const sections = navLinks
+    .map((link) => document.querySelector(link.hash))
+    .filter(Boolean);
+
+  if (sections.length && navLinks.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!visibleEntries.length) {
+          return;
+        }
+
+        const activeHash = `#${visibleEntries[0].target.id}`;
+        navLinks.forEach((link) => {
+          link.classList.toggle('active', link.hash === activeHash);
+        });
+      },
+      {
+        rootMargin: '-40% 0px -40% 0px',
+        threshold: [0.15, 0.35, 0.5]
+      }
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  }
+
   if (contactForm) {
     contactForm.addEventListener('submit', async (event) => {
       event.preventDefault();

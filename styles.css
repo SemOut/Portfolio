@@ -226,6 +226,16 @@ a {
   background: linear-gradient(135deg, #d8576d, #b83b52);
 }
 
+.nav-links a.active {
+  background: linear-gradient(135deg, #d8576d, #8a2033);
+  box-shadow: 0 18px 44px rgba(185, 59, 81, 0.28);
+}
+
+.nav-links a.active::after {
+  transform: skewX(-45deg) scale(1, 1);
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .button::after,
 .footer-links a::after,
 .btn::after,
@@ -330,6 +340,12 @@ h1 {
   border: 1px solid var(--panel-border);
 }
 
+.section.container > .card-panel {
+  margin: 0 auto;
+  width: min(60rem, 100%);
+  max-width: 60rem;
+}
+
 .card-panel p {
   margin: 0 0 0.85rem;
   color: var(--text);
@@ -343,6 +359,18 @@ h1 {
   color: var(--text-strong);
   font-weight: 600;
   font-size: 0.95rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card-panel ul {
