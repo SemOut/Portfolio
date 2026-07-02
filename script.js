@@ -1,3 +1,15 @@
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
+
 const yearElement = document.getElementById('currentYear');
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
@@ -5,11 +17,6 @@ const submitButton = document.getElementById('submitButton');
 const formSubject = document.getElementById('formSubject');
 
 document.addEventListener('DOMContentLoaded', () => {
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  window.scrollTo(0, 0);
-
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
