@@ -55,28 +55,62 @@ document.addEventListener('DOMContentLoaded', () => {
     .filter(Boolean);
 
   if (sections.length && navLinks.length) {
+    const sectionStates = new Map();
+
+    const updateActiveLink = (activeHash) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.hash === activeHash);
+      });
+    };
+
+    const getActiveSectionHash = () => {
+      const offset = window.innerHeight * 0.3;
+      const targetLine = window.scrollY + offset;
+      let activeSection = sections[0];
+
+      sections.forEach((section) => {
+        if (section.offsetTop <= targetLine) {
+          activeSection = section;
+        }
+      });
+
+      return activeSection ? `#${activeSection.id}` : '';
+    };
+
     const sectionObserver = new IntersectionObserver(
       (entries) => {
-        const visibleEntries = entries
+        entries.forEach((entry) => sectionStates.set(entry.target.id, entry));
+
+        const visibleEntries = Array.from(sectionStates.values())
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-        if (!visibleEntries.length) {
-          return;
+        let activeHash = '';
+        if (visibleEntries.length) {
+          activeHash = `#${visibleEntries[0].target.id}`;
+        } else if (sectionStates.size) {
+          const closestEntry = Array.from(sectionStates.values()).sort(
+            (a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top)
+          )[0];
+          activeHash = `#${closestEntry.target.id}`;
         }
 
-        const activeHash = `#${visibleEntries[0].target.id}`;
-        navLinks.forEach((link) => {
-          link.classList.toggle('active', link.hash === activeHash);
-        });
+        updateActiveLink(activeHash);
       },
       {
-        rootMargin: '-40% 0px -40% 0px',
-        threshold: [0.15, 0.35, 0.5]
+        rootMargin: '-35% 0px -55% 0px',
+        threshold: [0, 0.25, 0.5, 0.75]
       }
     );
 
     sections.forEach((section) => sectionObserver.observe(section));
+
+    const refreshActiveLink = () => updateActiveLink(getActiveSectionHash());
+    window.addEventListener('load', refreshActiveLink);
+    window.addEventListener('resize', refreshActiveLink);
+    window.addEventListener('scroll', refreshActiveLink);
+    window.addEventListener('hashchange', refreshActiveLink);
+    refreshActiveLink();
   }
 
   if (contactForm) {
