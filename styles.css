@@ -219,7 +219,7 @@ a {
 }
 
 .button:hover,
-.footer-links a:hover,
+ .email-btn:hover,
 .btn:hover,
 .nav-links a:hover {
   color: white;
@@ -237,6 +237,7 @@ a {
 }
 
 .button::after,
+.email-btn::after,
 .footer-links a::after,
 .btn::after,
 .nav-links a::after {
@@ -253,6 +254,7 @@ a {
 }
 
 .button:hover::after,
+.email-btn:hover::after,
 .footer-links a:hover::after,
 .btn:hover::after,
 .nav-links a:hover::after {
@@ -600,6 +602,25 @@ h2 {
   min-width: 10ch;
   box-shadow: 0 16px 40px rgba(185, 59, 81, 0.22);
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.email-btn::after {
+  content: "";
+  background: rgba(255, 255, 255, 0.12);
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+.email-btn:hover::after {
+  transform: skewX(-45deg) scale(1, 1);
 }
 
 .email-btn:hover {
