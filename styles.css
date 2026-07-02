@@ -689,12 +689,47 @@ h2 {
   .contact-panel,
   .two-column,
   .project-grid,
-  .skill-grid {
+  .skill-grid,
+  .footer-panel {
     grid-template-columns: 1fr;
   }
 
   .hero {
     padding-top: 4rem;
+  }
+
+  .footer-panel {
+    gap: 1rem;
+    align-items: start;
+    padding-bottom: 1rem;
+    border-bottom: none;
+  }
+
+  .footer-brand {
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .footer-links a {
+    flex: 0 1 auto;
+    min-width: 32%;
+    width: auto;
+    margin: 0.25rem;
+  }
+
+  .footer-note {
+    padding-top: 1rem;
+  }
+
+  .footer-note p {
+    text-align: center;
   }
 }
 
