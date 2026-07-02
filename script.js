@@ -5,6 +5,11 @@ const submitButton = document.getElementById('submitButton');
 const formSubject = document.getElementById('formSubject');
 
 document.addEventListener('DOMContentLoaded', () => {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
