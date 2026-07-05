@@ -97,6 +97,12 @@ body {
   padding-top: 3.5rem;
 }
 
+@media (max-width: 640px) {
+  body {
+    padding-top: 2.5rem;
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -753,18 +759,63 @@ h2 {
 @media (max-width: 640px) {
   .header-content {
     flex-direction: column;
-    gap: 0.75rem;
-    align-items: stretch;
+    gap: 0.35rem;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .brand-link {
+    gap: 0.4rem;
+  }
+
+  .brand-mark {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .brand-text strong {
+    font-size: 0.85rem;
+  }
+
+  .brand-text small {
+    font-size: 0.5rem;
+  }
+
+  .social-card {
+    margin-left: auto;
+    padding: 0.15rem 0.25rem;
+  }
+
+  .Btn {
+    height: 1.8rem;
+    min-width: 2rem;
+  }
+
+  .svgContainer {
+    width: 1.3rem;
+    height: 1.3rem;
   }
 
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
   }
 
-  .nav-links {
-    order: 2;
-    justify-content: center;
+  .nav-links a {
+    padding: 0 0.5rem;
+    min-width: 5.5em;
+    height: 1.9em;
+    font-size: 0.8rem;
+    margin: 0.15rem;
   }
 
   .section {
