@@ -127,6 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (contactForm) {
     contactForm.addEventListener('submit', async (event) => {
+      if (!window.fetch || !window.FormData) {
+        return;
+      }
       event.preventDefault();
 
       const formData = new FormData(contactForm);
@@ -182,8 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (error) {
         if (formStatus) {
-          formStatus.textContent = 'Sorry, something went wrong. Please try again later.';
+          formStatus.textContent = 'Sorry, something went wrong. Sending using fallback browser submit...';
           formStatus.className = 'form-status is-error';
+        }
+        if (contactForm && typeof contactForm.submit === 'function') {
+          contactForm.submit();
         }
       } finally {
         if (submitButton) {
