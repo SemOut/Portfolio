@@ -2,6 +2,11 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
+const cookieConsentName = 'portfolio_cookie_consent';
+const cookieConsentBannerId = 'cookie-consent-banner';
+const cookieSettingsTriggerId = 'cookie-settings-trigger';
+const cookieMaxAgeSeconds = 60 * 60 * 24 * 180;
+
 window.addEventListener('beforeunload', () => {
   window.scrollTo(0, 0);
 });
@@ -9,6 +14,141 @@ window.addEventListener('beforeunload', () => {
 window.addEventListener('load', () => {
   window.scrollTo(0, 0);
 });
+
+function getCookie(cookieName) {
+  const cookieEntry = document.cookie
+    .split('; ')
+    .find((entry) => entry.startsWith(`${cookieName}=`));
+
+  return cookieEntry ? decodeURIComponent(cookieEntry.split('=').slice(1).join('=')) : '';
+}
+
+function setCookie(cookieName, cookieValue, maxAgeSeconds = cookieMaxAgeSeconds) {
+  const secureAttribute = location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `${cookieName}=${encodeURIComponent(cookieValue)}; Max-Age=${maxAgeSeconds}; Path=/; SameSite=Lax${secureAttribute}`;
+}
+
+function deleteCookie(cookieName) {
+  document.cookie = `${cookieName}=; Max-Age=0; Path=/; SameSite=Lax`;
+}
+
+function ensureCookieSettingsTrigger() {
+  let trigger = document.getElementById(cookieSettingsTriggerId);
+
+  if (trigger) {
+    return trigger;
+  }
+
+  trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.id = cookieSettingsTriggerId;
+  trigger.className = 'cookie-settings-trigger';
+  trigger.textContent = 'Cookie settings';
+
+  trigger.addEventListener('click', () => {
+    const banner = document.getElementById(cookieConsentBannerId);
+
+    if (banner) {
+      banner.classList.add('is-visible');
+      document.body.classList.add('cookie-banner-open');
+      trigger.hidden = true;
+    }
+  });
+
+  document.body.appendChild(trigger);
+  return trigger;
+}
+
+function showCookieBanner() {
+  const banner = document.getElementById(cookieConsentBannerId);
+  const trigger = ensureCookieSettingsTrigger();
+
+  if (!banner) {
+    return;
+  }
+
+  banner.classList.add('is-visible');
+  document.body.classList.add('cookie-banner-open');
+  trigger.hidden = true;
+}
+
+function hideCookieBanner() {
+  const banner = document.getElementById(cookieConsentBannerId);
+  const trigger = ensureCookieSettingsTrigger();
+
+  if (!banner) {
+    return;
+  }
+
+  banner.classList.remove('is-visible');
+  document.body.classList.remove('cookie-banner-open');
+  trigger.hidden = false;
+}
+
+function mountCookieConsentBanner() {
+  if (document.getElementById(cookieConsentBannerId)) {
+    return;
+  }
+
+  const banner = document.createElement('aside');
+  banner.id = cookieConsentBannerId;
+  banner.className = 'cookie-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-live', 'polite');
+  banner.setAttribute('aria-label', 'Cookie preferences');
+
+  banner.innerHTML = `
+    <div class="cookie-banner__copy">
+      <p class="cookie-banner__eyebrow">Cookies</p>
+      <p class="cookie-banner__title">A single first-party cookie remembers your choice.</p>
+      <p class="cookie-banner__text">This portfolio uses one cookie to store whether you accepted or declined the notice. No analytics, ad tracking, or third-party cookies are used. Read the <a href="privacy-policy.html">privacy and cookie policy</a>.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-button cookie-button--ghost" data-cookie-choice="decline">Decline</button>
+      <button type="button" class="cookie-button" data-cookie-choice="accept">Accept</button>
+    </div>
+  `;
+
+  banner.addEventListener('click', (event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const choiceButton = target.closest('[data-cookie-choice]');
+
+    if (!(choiceButton instanceof HTMLElement)) {
+      return;
+    }
+
+    const choice = choiceButton.getAttribute('data-cookie-choice');
+
+    if (choice === 'accept') {
+      setCookie(cookieConsentName, 'accepted');
+    } else if (choice === 'decline') {
+      setCookie(cookieConsentName, 'declined');
+    }
+
+    hideCookieBanner();
+  });
+
+  document.body.appendChild(banner);
+}
+
+function initializeCookieConsent() {
+  mountCookieConsentBanner();
+
+  const consent = getCookie(cookieConsentName);
+
+  if (consent === 'accepted' || consent === 'declined') {
+    hideCookieBanner();
+    return;
+  }
+
+  deleteCookie(cookieConsentName);
+  showCookieBanner();
+}
 
 const yearElement = document.getElementById('currentYear');
 const contactForm = document.getElementById('contactForm');
@@ -20,6 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
+
+  initializeCookieConsent();
 
   const revealSelectors = [
     '.site-header',
